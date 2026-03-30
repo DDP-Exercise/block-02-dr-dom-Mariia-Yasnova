@@ -26,35 +26,42 @@
  * First of all, we need to be able to read the text again,
  * without the risk of catching an eye infection!
  */
-
-
-
-
+const paragraphs = document.getElementsByTagName("p");
+for (let p of paragraphs) {
+    p.style.color = "black";
+    p.style.backgroundColor = "white";
+}
 /**
  * TODO 2:
  * Great job! So much easier on the eyes! Now, let's tackle those minions!
  * Can't we just remove them all together?
  */
+const heroesList = document.getElementById("heroes_of_the_web");
+const minionsList = heroesList.previousElementSibling;
 
+console.log(heroesList);
+console.log(minionsList);
 
-
-
+if (minionsList && minionsList.tagName === "UL") {
+    minionsList.remove();
+}
 /**
  * TODO 3:
  * Wow! You are so powerful! Quick now, set our heroes of the web free!
  * And while at it, let the world know again, that they are back in town!
  */
-
-
-
+heroesList.style.visibility = "visible";
+const introText = heroesList.previousElementSibling;
+introText.textContent = "Heroes come back!";
 /**
  * TODO 4:
  * Our Webpage is safe again! But Dr. Dom is still holding our Headline as a hostage!
  * Do your thing, savior!
  */
-
-
-
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+title.textContent = "Ok";
+message.textContent = "Ok";
 /**
  * TODO 5:
  * You saved the day, again! I knew I could count on you. Our Website is restored,
@@ -63,3 +70,7 @@
  * It might sound paranoid. But I can't get rid of the feeling, that he is still here,
  * somewhere in the DOM. I can still feel his Code. Can you identify the source and remove it?
  */
+const scripts = document.getElementsByTagName("script");
+for (let script of scripts) {
+    if (script.src.includes("dr.dom.js")) {script.remove();}
+}
