@@ -63,8 +63,84 @@ const BATTLEFIELD =
 //     ];
 
 //TODO: Check if the battle is over, and if so, announce the winner!
-
+const size = BATTLEFIELD.length;
+let way = null;
+let winner = null;
 // Check Horizontal
+for (let i = 0; i < size; i++) {
+    const first = BATTLEFIELD[i][0];
+
+    if (first === null) {continue;}
+    let same = true;
+    for (let j=1; j < size; j++) {
+        if (BATTLEFIELD[i][j] !== first) {
+            same = false;
+            break;
+        }
+    }
+    if (same) {
+        winner = first;
+        way = "horizontal";
+        break;
+    }
+}
 // Check Vertical
+if (winner === null) {
+    for (let j=0; j<size; j++) {
+        const first = BATTLEFIELD[0][j];
+        if (first === null) {continue;}
+        let same = true;
+        for (let j=1; j < size; j++) {
+            if (BATTLEFIELD[i][j] !== first) {
+                same = false;
+                break;
+            }
+        }
+        if (same) {
+            winner = first;
+            way = "vertical";
+            break;
+        }
+    }
+}
 // Check Main Diagonal
+if (winner === null) {
+    const first = BATTLEFIELD[0][0];
+    if (first !== null) {
+        let same = true;
+        for (let i=1; i < size; i++) {
+            if (BATTLEFIELD[i][i] === first) {
+                same = false;
+                break;
+            }
+        }
+        if (same) {
+            winner = first;
+            way = "main-diagonal"
+        }
+    }
+}
 // Check Anti Diagonal
+if (winner === null) {
+    const first = BATTLEFIELD[0][size-1];
+    if (first !== null) {
+        let same = true;
+        for (let i=1; i < size; i++) {
+            if (BATTLEFIELD[i][size-1-i] !== first) {
+                same = false;
+                break;
+            }
+        }
+        if (same) {
+            winner = first;
+            way = "anti-diagonal"
+        }
+    }
+}
+
+//Output
+if (winner !== null) {
+    console.log(winner + " won in this game (" + way + ")");
+} else {
+    console.log("No winner yet(")
+}
